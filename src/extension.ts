@@ -14,7 +14,6 @@ export function activate(context: vscode.ExtensionContext) {
       setTimeout(() => {
         if (new Date().getTime() - lastTimestamp >= 400) {
           if(TTGanttPanel.currentPanel !== undefined) {
-            console.log(e.document.getText());
             TTGanttPanel.currentPanel.update(e.document.getText());
           }
         }
@@ -92,41 +91,10 @@ class TTGanttPanel {
         <link rel="stylesheet" href="${css}" />
       </head>
       <body>
-        <div id="TTGantt">${js}</div>
+        <div id="month-year-area" class="month-year-area"></div>
+        <div id="day-task-area" class="day-task-area"></div>
         <script src="${js}"></script>
       </body>
     </html>`;
   }
-}
-
-
-interface Task {
-
-}
-
-interface Section {
-
-}
-
-interface TTGantt {
-  current: Date;
-  startDate: Date;
-  endDate: Date;
-}
-
-
-
-
-function updateWebView(panel: vscode.WebviewPanel, text: string) {
-  let gantt = parseText(text);
-}
-
-function parseText(text: string) {
-  const today = new Date();
-  let gantt: TTGantt = {
-    current: today,
-    startDate: new Date(today.setDate(today.getDate() - 1)),
-    endDate: new Date(today.setDate(today.getDate() + 8))
-  };
-  return gantt;
 }

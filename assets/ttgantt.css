@@ -1,6 +1,51 @@
 body {
-    font-family: 'hiragino kaku gothic pro', meiryo;
-    background-color: #08F;
-    border-radius: 10px;
-    padding: 10px;
-  }
+  font-family: "hiragino kaku gothic pro", meiryo;
+  background-color: #333;
+  color: azure;
+}
+
+.month-year-area {
+  font-size: 0; /* 改行がinline-blockのスキマになるため */
+}
+
+.month-year {
+  font-size: 14px;
+  display: inline-block;
+  border-top: 1px solid rgba(250,250,250,0.5);
+  border-left: 1px solid rgba(250,250,250,0.5);
+}
+
+.day-task-area {
+  font-size: 0; /* 改行がinline-blockのスキマになるため */
+  position: relative;
+}
+
+.day-area {
+  font-size: 0; /* 改行がinline-blockのスキマになるため */
+}
+
+.day {
+  font-size: 14px;
+  display: inline-block;
+  width: 14px;
+  border-top: 1px solid rgba(250,250,250,0.5);
+  border-left: 1px solid rgba(250,250,250,0.5);
+}
+
+.task-area {
+  position: absolute;
+  top: 15px;
+  border-top: 1px solid rgba(250,250,250,0.5);
+}
+
+.bar {
+  background-color: #2b8fef; 
+  height: 10px;
+  display: block;
+  float: left;
+  position: relative;
+  border-radius: 4px;
+  margin: 4px 3px 0 0;
+  opacity: 0.7;
+}
+
