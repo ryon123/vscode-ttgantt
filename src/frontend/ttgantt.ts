@@ -3,9 +3,11 @@
     const message = event.data; // The JSON data our extension sent
     switch (message.command) {
       case 'update':
-        let gantt: TTGantt = parseText(message.text);
-        drawTimeline(gantt);
-        drawTasks(gantt);
+        let gantt: TTGantt | undefined = parseText(message.text);
+        if(gantt !== undefined) {
+          drawTimeline(gantt);
+          drawTasks(gantt);
+        }
         break;
     }
   });
@@ -28,17 +30,21 @@ interface TTGantt {
   tasks: Task[];
 }
 
-function parseText(text: string): TTGantt {
-  const today1 = new Date(new Date().setHours(0, 0, 0, 0));
-  const today2 = new Date(new Date().setHours(0, 0, 0, 0));
-  let gantt: TTGantt = {
-    current: today1,
-    startDate: new Date(today1.setDate(today1.getDate() - 1)),
-    endDate: new Date(today2.setDate(today2.getDate() + 15)),
-    tasks: [{name: "Sample", startDate: new Date(today1.setDate(today1.getDate() + 3)), endDate: new Date(today2.setDate(today2.getDate() - 7))} ]
-    //tasks: [{name: "Sample", startDate: new Date(2020, 3, 28), endDate: new Date(2020, 4, 3)} ]
-  };
-  return gantt;
+function parseText(text: string): TTGantt | undefined {
+  try {
+    const gantt: TTGantt = JSON.parse(text, parseDate) as TTGantt;
+    return gantt;
+  } catch {
+    return undefined;
+  }
+}
+
+function parseDate(key: string, val: string) {
+  if(key === "current" || key === "startDate" || key === "endDate") {
+    const d: Date = new Date(Date.parse(val));
+    return new Date(d.setHours(0, 0, 0, 0));
+  }
+  return val;
 }
 
 function drawTimeline(gantt: TTGantt) {
