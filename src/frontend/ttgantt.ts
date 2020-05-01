@@ -79,7 +79,13 @@ function drawTimeline(gantt: TTGantt) {
     } else {
       mycount[my] = 1;
     }
-    chartElement.insertAdjacentHTML('beforeend', `<div style="height:${height}px;" class="day">${d.getDate()}</div>`);
+    let day = "";
+    if(d.getDay() === 0) {
+      day = "sunday-background";
+    } else if(d.getDay() === 6) {
+      day = "saturday-background";
+    }
+    chartElement.insertAdjacentHTML('beforeend', `<div style="height:${height}px;" class="day ${day}">${d.getDate()}</div>`);
     d.setDate(d.getDate() + 1);
   }
   dayObj.appendChild(chartElement);
