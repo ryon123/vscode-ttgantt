@@ -97,6 +97,7 @@ class TTGanttPanel {
           <div id="day-task-area" class="day-task-area"></div>
           <script src="${js}"></script>
         </div>
+        <button class="save-button" onclick="onSaveClick();">SAVE</button>
       </body>
     </html>`;
   }

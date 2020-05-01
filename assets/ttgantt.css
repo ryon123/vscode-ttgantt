@@ -50,9 +50,14 @@
   opacity: 0.7;
 }
 
-#canvas-test {
-  top: 100px;
-  border-top: 1px solid rgba(250,250,250,0.5);
-  border-left: 1px solid rgba(250,250,250,0.5);
+.save-button {
+  display: block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  background: #333;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  font-family: "hiragino kaku gothic pro", meiryo;
 }
-

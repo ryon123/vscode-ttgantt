@@ -7,21 +7,24 @@
         if(gantt !== undefined) {
           drawTimeline(gantt);
           drawTasks(gantt);
-          let element: HTMLElement | null = document.querySelector("#TTGantt");
-          if(element) {
-            html2canvas(element).then(canvas => {
-              let imageData = canvas.toDataURL();
-              let a = document.createElement('a');
-              a.href = canvas.toDataURL();
-              a.download = 'download.png';
-              a.click();
-            });
-          }
         }
         break;
     }
   });
 }());
+
+function onSaveClick() {
+  let element: HTMLElement | null = document.querySelector("#TTGantt");
+  if(element) {
+    html2canvas(element).then(canvas => {
+      let imageData = canvas.toDataURL();
+      let a = document.createElement('a');
+      a.href = canvas.toDataURL();
+      a.download = 'download.png';
+      a.click();
+    });
+  }
+}
 
 interface Task {
   name: string;
