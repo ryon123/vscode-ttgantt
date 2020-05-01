@@ -7,6 +7,16 @@
         if(gantt !== undefined) {
           drawTimeline(gantt);
           drawTasks(gantt);
+          let element: HTMLElement | null = document.querySelector("#TTGantt");
+          if(element) {
+            html2canvas(element).then(canvas => {
+              let imageData = canvas.toDataURL();
+              let a = document.createElement('a');
+              a.href = canvas.toDataURL();
+              a.download = 'download.png';
+              a.click();
+            });
+          }
         }
         break;
     }
@@ -89,6 +99,11 @@ function getMonthYear(d: Date): string {
 
 function drawTasks(gantt: TTGantt) {
   let areaWidth = ((gantt.endDate.getTime() - gantt.startDate.getTime()) / 86400000 + 1) * 15;
+  const ganttObj = document.getElementById("TTGantt");
+  if (ganttObj === null) {
+    return;
+  }
+  ganttObj.style.width = `${areaWidth}px`;
   let chartElement = document.createElement('div');
   chartElement.style.width = `${areaWidth}px`;
   chartElement.className = 'task-area';
@@ -111,4 +126,5 @@ function drawTasks(gantt: TTGantt) {
     return;
   }
   taskObj.appendChild(chartElement);
+  taskObj.style.height = `${gantt.tasks.length * 15 + 15}px`;
 }

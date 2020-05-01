@@ -72,7 +72,8 @@ class TTGanttPanel {
   public update(input: string) {
     const assets_css = this._getWebViewUri(this._panel.webview, [this._extensionPath, "assets", "ttgantt.css"]);
     const assets_js = this._getWebViewUri(this._panel.webview, [this._extensionPath, "out", "frontend", "ttgantt.js"]);
-    this._panel.webview.html = this._getWebviewContent(assets_css, assets_js);
+    const assets_libjs = this._getWebViewUri(this._panel.webview, [this._extensionPath, "assets", "html2canvas.min.js"]);
+    this._panel.webview.html = this._getWebviewContent(assets_css, assets_js, assets_libjs);
     this._panel.webview.postMessage({ command: 'update', text: input});
   }
 
@@ -82,18 +83,20 @@ class TTGanttPanel {
     return webview.asWebviewUri(local);
   }
 
-  private _getWebviewContent(css: vscode.Uri, js: vscode.Uri) {
+  private _getWebviewContent(css: vscode.Uri, js: vscode.Uri, libjs: vscode.Uri) {
     return `<!DOCTYPE html>
-    <html>
     <html>
       <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="${css}" />
       </head>
       <body>
-        <div id="month-year-area" class="month-year-area"></div>
-        <div id="day-task-area" class="day-task-area"></div>
-        <script src="${js}"></script>
+        <script src="${libjs}"></script>
+        <div id="TTGantt">
+          <div id="month-year-area" class="month-year-area"></div>
+          <div id="day-task-area" class="day-task-area"></div>
+          <script src="${js}"></script>
+        </div>
       </body>
     </html>`;
   }
