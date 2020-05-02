@@ -1,3 +1,5 @@
+const BOX_SIZE: number = 20;
+
 (function () {
   window.addEventListener('message', event => {
     const message = event.data; // The JSON data our extension sent
@@ -66,7 +68,6 @@ function drawTimeline(gantt: TTGantt) {
     return;
   }
   dayObj.innerHTML = ''; // TODO: initialize should be moved to outside of this method.
-  let height = 15; // TODO: calculate from total tasks.
   let termDay = (gantt.endDate.getTime() - gantt.startDate.getTime()) / 86400000;
   let d: Date = new Date(gantt.startDate.getTime());
   let chartElement = document.createElement('div');
@@ -85,7 +86,7 @@ function drawTimeline(gantt: TTGantt) {
     } else if(d.getDay() === 6) {
       day = "saturday-background";
     }
-    chartElement.insertAdjacentHTML('beforeend', `<div style="height:${height}px;" class="day ${day}">${d.getDate()}</div>`);
+    chartElement.insertAdjacentHTML('beforeend', `<div style="width: ${BOX_SIZE-1}px; height:${BOX_SIZE}px;" class="day ${day}">${d.getDate()}</div>`);
     d.setDate(d.getDate() + 1);
   }
   dayObj.appendChild(chartElement);
@@ -95,7 +96,7 @@ function drawTimeline(gantt: TTGantt) {
   }
   myObj.innerHTML = '';
   for (let key in mycount) {
-    let width = mycount[key] * 15 - 1;
+    let width = mycount[key] * BOX_SIZE - 1;
     myObj.insertAdjacentHTML('beforeend', `<div style="width:${width}px;" class="month-year">${key}</div>`);
   }
 }
@@ -107,7 +108,7 @@ function getMonthYear(d: Date): string {
 }
 
 function drawTasks(gantt: TTGantt) {
-  let areaWidth = ((gantt.endDate.getTime() - gantt.startDate.getTime()) / 86400000 + 1) * 15;
+  let areaWidth = ((gantt.endDate.getTime() - gantt.startDate.getTime()) / 86400000 + 1) * BOX_SIZE;
   const ganttObj = document.getElementById("TTGantt");
   if (ganttObj === null) {
     return;
@@ -115,6 +116,7 @@ function drawTasks(gantt: TTGantt) {
   ganttObj.style.width = `${areaWidth}px`;
   let chartElement = document.createElement('div');
   chartElement.style.width = `${areaWidth}px`;
+  chartElement.style.top = `${BOX_SIZE}px`;
   chartElement.className = 'task-area';
   for(let task of gantt.tasks) {
     if(task.endDate.getTime() < gantt.startDate.getTime() || task.startDate.getTime() > gantt.endDate.getTime() + 86400000) { 
@@ -126,8 +128,8 @@ function drawTasks(gantt: TTGantt) {
     }
     let endTime = (task.endDate.getTime() > gantt.endDate.getTime()) ? gantt.endDate.getTime(): task.endDate.getTime();
     let endOffset = (endTime - gantt.startDate.getTime()) / 86400000 + 1;
-    let left = startOffset * 15;
-    let width = (endOffset - startOffset) * 15;
+    let left = startOffset * BOX_SIZE;
+    let width = (endOffset - startOffset) * BOX_SIZE;
     chartElement.insertAdjacentHTML('beforeend', `<div class="task">
     <span style="margin-left:${left}px; width:${width}px;" class="bar"></span>
     <span class="bar-name">${task.name}</span>
@@ -138,5 +140,5 @@ function drawTasks(gantt: TTGantt) {
     return;
   }
   taskObj.appendChild(chartElement);
-  taskObj.style.height = `${gantt.tasks.length * 15 + 15}px`;
+  taskObj.style.height = `${gantt.tasks.length * BOX_SIZE + BOX_SIZE}px`;
 }

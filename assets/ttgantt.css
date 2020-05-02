@@ -9,7 +9,7 @@
 }
 
 .month-year {
-  font-size: 14px;
+  font-size: 18px;
   display: inline-block;
   border-top: 1px solid rgba(51,51,51,0.5);
   border-left: 1px solid rgba(51,51,51,0.5);
@@ -25,9 +25,8 @@
 }
 
 .day {
-  font-size: 14px;
+  font-size: 18px;
   display: inline-block;
-  width: 14px;
   border-top: 1px solid rgba(51,51,51,0.5);
   border-left: 1px solid rgba(51,51,51,0.5);
 }
@@ -42,7 +41,6 @@
 
 .task-area {
   position: absolute;
-  top: 15px;
   border-top: 1px solid rgba(51,51,51,0.5);
   border-left: 1px solid rgba(51,51,51,0.5);
 }
@@ -59,11 +57,9 @@
 }
 
 .bar-name {
-  font-size: 14px;
+  font-size: 18px;
   font-family: "hiragino kaku gothic pro", meiryo;
   color: #333;
-  position: relative;
-  top: 2px;
 }
 
 .save-button {
