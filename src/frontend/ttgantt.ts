@@ -128,7 +128,10 @@ function drawTasks(gantt: TTGantt) {
     let endOffset = (endTime - gantt.startDate.getTime()) / 86400000 + 1;
     let left = startOffset * 15;
     let width = (endOffset - startOffset) * 15;
-    chartElement.insertAdjacentHTML('beforeend', `<div class="task"><span style="margin-left:${left}px; width:${width}px;" class="bar"></span></div>`);
+    chartElement.insertAdjacentHTML('beforeend', `<div class="task">
+    <span style="margin-left:${left}px; width:${width}px;" class="bar"></span>
+    <span class="bar-name">${task.name}</span>
+    </div>`);
   }
   const taskObj = document.getElementById("day-task-area");
   if (taskObj === null) {

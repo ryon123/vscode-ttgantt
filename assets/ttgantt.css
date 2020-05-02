@@ -58,6 +58,14 @@
   opacity: 0.7;
 }
 
+.bar-name {
+  font-size: 14px;
+  font-family: "hiragino kaku gothic pro", meiryo;
+  color: #333;
+  position: relative;
+  top: 2px;
+}
+
 .save-button {
   display: block;
   padding: 0.3em 1em;
