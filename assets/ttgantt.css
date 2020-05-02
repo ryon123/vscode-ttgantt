@@ -1,7 +1,7 @@
 #TTGantt {
   font-family: "hiragino kaku gothic pro", meiryo;
-  background-color: #333;
-  color: azure;
+  background-color: #fff;
+  color: #333;
 }
 
 .month-year-area {
@@ -11,8 +11,8 @@
 .month-year {
   font-size: 14px;
   display: inline-block;
-  border-top: 1px solid rgba(250,250,250,0.5);
-  border-left: 1px solid rgba(250,250,250,0.5);
+  border-top: 1px solid rgba(51,51,51,0.5);
+  border-left: 1px solid rgba(51,51,51,0.5);
 }
 
 .day-task-area {
@@ -28,23 +28,23 @@
   font-size: 14px;
   display: inline-block;
   width: 14px;
-  border-top: 1px solid rgba(250,250,250,0.5);
-  border-left: 1px solid rgba(250,250,250,0.5);
+  border-top: 1px solid rgba(51,51,51,0.5);
+  border-left: 1px solid rgba(51,51,51,0.5);
 }
 
 .sunday-background {
-  background: rgb(96, 51, 51);
+  background: #faa;
 }
 
 .saturday-background {
-  background: rgb(51, 51, 96);
+  background: #aaf;
 }
 
 .task-area {
   position: absolute;
   top: 15px;
-  border-top: 1px solid rgba(250,250,250,0.5);
-  border-left: 1px solid rgba(250,250,250,0.5);
+  border-top: 1px solid rgba(51,51,51,0.5);
+  border-left: 1px solid rgba(51,51,51,0.5);
 }
 
 .bar {
@@ -62,9 +62,8 @@
   display: block;
   padding: 0.3em 1em;
   text-decoration: none;
-  color: #67c5ff;
-  background: #333;
-  border: solid 2px #67c5ff;
+  color: #333;
+  border: solid 2px #333;
   border-radius: 3px;
   transition: .4s;
   font-family: "hiragino kaku gothic pro", meiryo;
