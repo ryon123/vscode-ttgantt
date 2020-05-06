@@ -92,6 +92,9 @@ function drawTimeline(gantt: TTGantt) {
     } else if(d.getDay() === 6) {
       day = "saturday-background";
     }
+    if(gantt.current.getTime() === d.getTime()) {
+      day += " current";
+    }
     chartElement.insertAdjacentHTML('beforeend', `<div style="width: ${BOX_SIZE-1}px; height:${BOX_SIZE}px;" class="day ${day}">${d.getDate()}</div>`);
     d.setDate(d.getDate() + 1);
   }

@@ -39,6 +39,10 @@
   background: #aaf;
 }
 
+.current {
+  background: #afa;
+}
+
 .task-area {
   position: absolute;
   border-top: 1px solid rgba(51,51,51,0.5);
