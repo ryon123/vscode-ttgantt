@@ -6,7 +6,11 @@
         {
             "name": "Task1",
             "startDate": "2020/4/20",
-            "endDate": "2020/5/2"
+            "endDate": "2020/5/2",
+            "events": [
+                {"name": "Review", "date": "2020/4/24"},
+                {"name": "Release", "date": "2020/5/2"}
+            ]
         },
         {
             "name": "Task2",

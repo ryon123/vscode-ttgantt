@@ -28,10 +28,16 @@ function onSaveClick() {
   }
 }
 
+interface Event {
+  name: string;
+  date: Date;
+}
+
 interface Task {
   name: string;
   startDate: Date;
   endDate: Date;
+  events: Event[];
 }
 
 interface Section {
@@ -55,7 +61,7 @@ function parseText(text: string): TTGantt | undefined {
 }
 
 function parseDate(key: string, val: string) {
-  if(key === "current" || key === "startDate" || key === "endDate") {
+  if(key === "current" || key === "date" || key === "startDate" || key === "endDate") {
     const d: Date = new Date(Date.parse(val));
     return new Date(d.setHours(0, 0, 0, 0));
   }
@@ -134,6 +140,13 @@ function drawTasks(gantt: TTGantt) {
     <span style="margin-left:${left}px; width:${width}px;" class="bar"></span>
     <span class="bar-name">${task.name}</span>
     </div>`);
+    if(task.events === null || task.events === undefined) {
+      continue;
+    }
+    for(let event of task.events) {
+      console.log(event.name);
+      console.log(event.date);
+    }
   }
   const taskObj = document.getElementById("day-task-area");
   if (taskObj === null) {
