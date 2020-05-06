@@ -124,6 +124,7 @@ function drawTasks(gantt: TTGantt) {
   chartElement.style.width = `${areaWidth}px`;
   chartElement.style.top = `${BOX_SIZE}px`;
   chartElement.className = 'task-area';
+  let heightCount = 0;
   for(let task of gantt.tasks) {
     if(task.endDate.getTime() < gantt.startDate.getTime() || task.startDate.getTime() > gantt.endDate.getTime() + 86400000) { 
       continue;
@@ -140,18 +141,31 @@ function drawTasks(gantt: TTGantt) {
     <span style="margin-left:${left}px; width:${width}px;" class="bar"></span>
     <span class="bar-name">${task.name}</span>
     </div>`);
+    heightCount++;
     if(task.events === null || task.events === undefined) {
       continue;
     }
+    let eventHtml: string = "";
     for(let event of task.events) {
       console.log(event.name);
       console.log(event.date);
+      if(event.date.getTime() < gantt.startDate.getTime() || event.date.getTime() > gantt.endDate.getTime() + 86400000) { 
+        continue;
+      }
+      let eventOffset = (event.date.getTime() - gantt.startDate.getTime()) / 86400000;
+      if(eventOffset < 0) {
+        eventOffset = 0;
+      } 
+      let left = eventOffset * BOX_SIZE;
+      eventHtml += `<span style="left:${left}px;" class="event"></span>`;
     }
+    chartElement.insertAdjacentHTML('beforeend', `<div style="height:${BOX_SIZE}px;">${eventHtml}</div>`);
+    heightCount++;
   }
   const taskObj = document.getElementById("day-task-area");
   if (taskObj === null) {
     return;
   }
   taskObj.appendChild(chartElement);
-  taskObj.style.height = `${gantt.tasks.length * BOX_SIZE + BOX_SIZE}px`;
+  taskObj.style.height = `${heightCount * BOX_SIZE + BOX_SIZE}px`;
 }

@@ -62,6 +62,14 @@
   color: #333;
 }
 
+.event {
+  float: left;
+  position: absolute;
+  border-right: 10px solid transparent;
+  border-bottom: 17px solid #f44;
+  border-left: 10px solid transparent; 
+}
+
 .save-button {
   display: block;
   padding: 0.3em 1em;
