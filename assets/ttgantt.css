@@ -65,9 +65,6 @@
 .event {
   float: left;
   position: absolute;
-  border-right: 10px solid transparent;
-  border-bottom: 17px solid #f44;
-  border-left: 10px solid transparent; 
 }
 
 .event-name {

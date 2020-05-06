@@ -157,8 +157,12 @@ function drawTasks(gantt: TTGantt) {
       if(eventOffset < 0) {
         eventOffset = 0;
       } 
-      let left = eventOffset * BOX_SIZE;
-      eventHtml += `<span style="left:${left}px;" class="event"></span>`;
+      let left = eventOffset * BOX_SIZE - BOX_SIZE / 2 - 1;
+      eventHtml += `<span style="left:${left}px; 
+      border-right: ${BOX_SIZE / 2}px solid transparent;
+      border-bottom: ${BOX_SIZE / 2 * 1.732}px solid #f44;
+      border-left: ${BOX_SIZE / 2}px solid transparent;
+      " class="event"></span>`;
       eventName += `<span style="left:${left}px;" class="event-name">${event.name}</span>`;
     }
     chartElement.insertAdjacentHTML('beforeend', `<div style="height:${BOX_SIZE}px;">${eventHtml}</div>`);
