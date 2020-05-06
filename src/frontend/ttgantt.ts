@@ -146,6 +146,7 @@ function drawTasks(gantt: TTGantt) {
       continue;
     }
     let eventHtml: string = "";
+    let eventName: string = "";
     for(let event of task.events) {
       console.log(event.name);
       console.log(event.date);
@@ -158,9 +159,11 @@ function drawTasks(gantt: TTGantt) {
       } 
       let left = eventOffset * BOX_SIZE;
       eventHtml += `<span style="left:${left}px;" class="event"></span>`;
+      eventName += `<span style="left:${left}px;" class="event-name">${event.name}</span>`;
     }
     chartElement.insertAdjacentHTML('beforeend', `<div style="height:${BOX_SIZE}px;">${eventHtml}</div>`);
-    heightCount++;
+    chartElement.insertAdjacentHTML('beforeend', `<div style="height:${BOX_SIZE}px;">${eventName}</div>`);
+    heightCount += 2;
   }
   const taskObj = document.getElementById("day-task-area");
   if (taskObj === null) {

@@ -70,6 +70,14 @@
   border-left: 10px solid transparent; 
 }
 
+.event-name {
+  float: left;
+  position: absolute;
+  font-size: 10px;
+  font-family: "hiragino kaku gothic pro", meiryo;
+  color: #f44;
+}
+
 .save-button {
   display: block;
   padding: 0.3em 1em;
